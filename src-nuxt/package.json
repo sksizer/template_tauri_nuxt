@@ -17,15 +17,15 @@
     "@nuxt/scripts": "0.11.6",
     "@nuxt/test-utils": "3.18.0",
     "@nuxt/ui": "3.1.1",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2",
     "@unhead/vue": "^2.0.3",
     "eslint": "^9.0.0",
-    "nuxt": "^3.17.3",
+    "nuxt": "^4.1.2",
+    "tailwindcss": "^4.1.6",
     "typescript": "^5.6.3",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.1",
-    "tailwindcss": "^4.1.6",
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-opener": "^2"
+    "vue-router": "^4.5.1"
   },
   "packageManager": "pnpm@8.9.0+sha1.01c55344d677f3b481c6bb6ffba9a6b3c6dbd91d"
 }
