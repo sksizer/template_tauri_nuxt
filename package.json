@@ -7,9 +7,9 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "pnpm": "^10.16.1"
+    "pnpm": "^10.18.3"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2"
+    "@tauri-apps/cli": "^2.8.4"
   }
 }

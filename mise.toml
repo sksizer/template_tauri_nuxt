@@ -1,3 +1,31 @@
 [tools]
 node = { version = "lts", postinstall = "npm install"}
-rust = { version = "1.89.0", postinstall = "cargo install tauri-cli --version '^2.0.0' --locked" }
+rust = { version = "latest", postinstall = "cargo install tauri-cli --version '^2.0.0' --locked" }
+
+[tasks.setup]
+description = "Setup the development environment"
+run = [
+    "pnpm install",
+    "cd src-nuxt && pnpm install",
+]
+
+[tasks.dev]
+description = "Run the Tauri development server"
+run = "pnpm tauri dev -- --bin pickaxe"
+
+[tasks.build]
+description = "Run the Tauri development server"
+run = "pnpm tauri build -- --bin pickaxe"
+
+[tasks.test_all]
+description = "Run all tests, checks, and clippy"
+run = [
+    "cd src-tauri && cargo test --workspace --verbose",
+    "cd src-tauri && cargo check --workspace --all-targets", 
+    "cd src-tauri && cargo clippy --workspace --all-targets -- -D warnings"
+]
+
+[hooks]
+enter = [
+    "echo 'Entering Pickaxe development environment'",
+]
