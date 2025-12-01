@@ -12,11 +12,11 @@ run = [
 
 [tasks.dev]
 description = "Run the Tauri development server"
-run = "pnpm tauri dev -- --bin pickaxe"
+run = "pnpm tauri dev"
 
 [tasks.build]
 description = "Run the Tauri development server"
-run = "pnpm tauri build -- --bin pickaxe"
+run = "pnpm tauri build"
 
 [tasks.test_all]
 description = "Run all tests, checks, and clippy"
@@ -36,5 +36,5 @@ run = [
 
 [hooks]
 enter = [
-    "echo 'Entering Pickaxe development environment'",
+    "echo 'Entering Tauri/Nuxt development environment'",
 ]
