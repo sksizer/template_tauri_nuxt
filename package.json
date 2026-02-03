@@ -4,12 +4,18 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "tauri": "tauri"
+    "tauri": 		"tauri",
+    "clean:frontend": 	"rm -Rf src-nuxt/node_modules && rm -rf src-nuxt/dist && rm -Rf src-nuxt/.output",
+    "clean:backend": 	"rm -Rf src-tauri/target",
+    "clean:root" : 	"rm -Rf node_modules",
+    "clean" : 		"pnpm run clean:frontend && pnpm run clean:backend && pnpm run clean:root",
+    "setup:frontend" : 	"cd src-nuxt && pnpm install",
+    "setup" : 		"pnpm install && pnpm run setup:frontend"
   },
   "dependencies": {
-    "pnpm": "^10.18.3"
+    "pnpm": "^10.28.2"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2.8.4"
+    "@tauri-apps/cli": "^2.9.6"
   }
 }
