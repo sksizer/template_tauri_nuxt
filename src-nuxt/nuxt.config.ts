@@ -2,7 +2,9 @@
 export default defineNuxtConfig({
   telemetry: false,
   compatibilityDate: '2024-11-01',
-  css: ['~/assets/css/main.css'],
+  css: [
+    '~/assets/css/no-bounce.css', // Gets rid of the annoying bounce effect on the page, makes it more app liek
+    '~/assets/css/main.css'],
   devtools: { enabled: true },
   ssr: false,
   devServer: {

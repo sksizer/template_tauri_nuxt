@@ -1,0 +1,3 @@
+- Add bundle analyzer task
+- Add script to configure properties and settings
+- Add script to update tool dependencies as they are referenced in multiple places (PNPM, Rust)
