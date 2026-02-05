@@ -2,6 +2,15 @@
 
 This template provides a starting point for developing desktop applications using [Tauri](https://tauri.app/), [Nuxt.js](https://nuxt.com/), and [TypeScript](https://www.typescriptlang.org/).
 
+## Features:
+- A slightly cleaner project structure with frontend and backend code in peer directories.
+- Pre-configured github actions
+    - [ci](.github/workflows/ci.yml) for code quality checks
+    - [build-check](.github/workflows/build-check.yml) for a basic build verification
+    - [release](.github/workflows/release.yml)
+- Pre-configured tasks in 'package.json'
+
+
 ## Project Structure
 
 Unlike typical Tauri templates where frontend code is at the root level, this template uses a peer directory structure:
@@ -25,8 +34,7 @@ This organization keeps the frontend and backend code cleanly separated while ma
 Before running any Tauri commands, you must install the Node.js dependencies in the frontend directory:
 
 ```bash
-cd src-nuxt
-pnpm install  # or npm install
+pnpm run project:init
 ```
 
 ## Development Commands
