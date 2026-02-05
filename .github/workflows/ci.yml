@@ -1,57 +1,57 @@
 name: CI
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-    # ── Frontend checks ──────────────────────────────
-    frontend-lint:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-node@v4
-          with:
-            node-version: lts/*
-        - uses: pnpm/action-setup@v4
-          with:
-            version: 10.24.0
-        - run: pnpm install
-        - run: pnpm run setup:frontend
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.24.0
+      - run: pnpm install
+      - run: pnpm run setup:frontend
 
-        # ESLint — you already have @nuxt/eslint configured
-        - name: Lint frontend
-          run: cd src-nuxt && npx eslint .
+      - name: Lint
+        run: cd src-nuxt && pnpm run lint
 
-        # Type checking — uses Vue's tsc wrapper
-        - name: Type check frontend
-          run: cd src-nuxt && npx nuxi typecheck
+      - name: Type check
+        run: cd src-nuxt && pnpm run typecheck
 
-    # ── Rust checks ───────────────────────────────────
-    rust-checks:
-      runs-on: ubuntu-22.04
-      steps:
-        - uses: actions/checkout@v4
+      - name: Test
+        run: cd src-nuxt && pnpm run test
 
-        - name: Install system dependencies
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+  rust: 
+    runs-on: ubuntu-22.04 # Use this bc of tauri project recommendations wrt to dependencies
+    steps:
+      - uses: actions/checkout@v4
 
-        - uses: dtolnay/rust-toolchain@stable
-          with:
-            components: clippy, rustfmt
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
-        - uses: swatinem/rust-cache@v2
-          with:
-            workspaces: './src-tauri -> target'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
 
-        # Format check — fails if code isn't formatted
-        - name: Formatting Check Rust formatting
-          run: cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
 
-        # Clippy — Rust's linter, catches common mistakes
-        - name: Linting w Clippy
-          run: cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings
+      - name: Check formatting
+        run: cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+
+      - name: Clippy lints
+        run: cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings
+
+      - name: Test
+        run: cargo test --manifest-path src-tauri/Cargo.toml

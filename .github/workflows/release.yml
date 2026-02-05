@@ -1,16 +1,12 @@
-name: Release Tauri App
+name: Release
 
 on:
   push:
     tags:
       - 'v*'
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
 
 jobs:
-  build:
+  release:
     permissions:
       contents: write
     strategy:
@@ -45,7 +41,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10.24.0
+          version: 10.28.2
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable

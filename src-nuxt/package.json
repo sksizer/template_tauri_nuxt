@@ -8,7 +8,10 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck": "nuxi typecheck"
   },
   "dependencies": {
     "@nuxt/content": "^3.11.0",
@@ -38,5 +41,8 @@
       "unrs-resolver",
       "vue-demi"
     ]
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18"
   }
 }
