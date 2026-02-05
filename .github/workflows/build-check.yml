@@ -32,8 +32,5 @@ jobs:
       - run: pnpm install
       - run: pnpm run setup:frontend
 
-      - name: Build frontend
-        run: cd src-nuxt && pnpm run generate
-
-      - name: Build Rust
-        run: cargo build --manifest-path src-tauri/Cargo.toml
+      - name: Tauri build
+        run: pnpm tauri build --ci
