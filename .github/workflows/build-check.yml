@@ -29,8 +29,7 @@ jobs:
         with:
           workspaces: './src-tauri -> target'
 
-      - run: pnpm install
-      - run: pnpm run setup:frontend
+      - run: pnpm run project:init
 
       - name: Tauri build
         run: pnpm tauri build --ci

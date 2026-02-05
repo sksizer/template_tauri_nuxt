@@ -53,11 +53,8 @@ jobs:
         with:
           workspaces: './src-tauri -> target'
 
-      - name: Install root dependencies
-        run: pnpm install
-
       - name: Install frontend dependencies
-        run: pnpm run setup:frontend
+        run: pnpm run project:init
 
       - uses: tauri-apps/tauri-action@v0.6.1
         env:
