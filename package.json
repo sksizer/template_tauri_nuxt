@@ -4,18 +4,21 @@
   "version": "0.1.2",
   "type": "module",
   "scripts": {
-    "tauri": 		"tauri",
-    "clean:frontend": 	"cd src-nuxt && pnpm run clean",
-    "clean:backend": 	"rm -Rf src-tauri/target && rm src-tauri/Cargo.lock",
-    "clean:root" : 	"rm -Rf node_modules",
-    "clean" : 		"pnpm run clean:frontend && pnpm run clean:backend && pnpm run clean:root",
+    "tauri": "tauri",
+    "clean:frontend": "cd src-nuxt && pnpm run clean",
+    "clean:backend": "rm -Rf src-tauri/target && rm src-tauri/Cargo.lock",
+    "clean:root": "rm -Rf node_modules",
+    "clean": "pnpm run clean:frontend && pnpm run clean:backend && pnpm run clean:root",
     "install_dependencies:debian": "sudo apt install build-essential pkg-config libgtk-3-dev libglib2.0-dev libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev libssl-dev",
-    "project:init": "pnpm install && cd src-nuxt && pnpm install"
+    "project:init": "pnpm install && cd src-nuxt && pnpm install",
+    "release": "release-it"
   },
   "dependencies": {
     "pnpm": "^10.28.2"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2.9.6"
+    "@release-it/bumper": "^7.0.5",
+    "@tauri-apps/cli": "^2.9.6",
+    "release-it": "^19.2.4"
   }
 }
