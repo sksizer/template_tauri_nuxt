@@ -29,7 +29,6 @@ jobs:
 
       - name: Test
         run: pnpm frontend:test
-        # run: cd src-nuxt && pnpm run test
 
   rust: 
     runs-on: ubuntu-22.04 # Use this bc of tauri project recommendations wrt to dependencies
@@ -50,13 +49,10 @@ jobs:
           workspaces: './src-tauri -> target'
 
       - name: Check formatting
-        run: pnpm run backend:format:check
-        # run: cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+        run: .scripts/backend-format-check
 
       - name: Clippy lints
-        run: pnpm run backend:lint:check
-        # run: cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings
+        run: .scripts/backend-lint
 
       - name: Test
-        run: pnpm run backend:test
-        # run: cargo test --manifest-path src-tauri/Cargo.toml
+        run: .scripts/backend-test
